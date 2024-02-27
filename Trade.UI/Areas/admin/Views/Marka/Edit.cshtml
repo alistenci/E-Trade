@@ -1,0 +1,69 @@
+﻿@model Marka
+!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Tables - SB Admin</title>
+    <link href="/admin/dist/style.min.css" rel="stylesheet" />
+    <link href="/admin/css/styles.css" rel="stylesheet" />
+    <script src="/admin/js/all.js" crossorigin="anonymous"></script>
+</head>
+<body class="sb-nav-fixed">
+    <div id="layoutSidenav">
+        <div id="layoutSidenav_content">
+            <main>
+				<div class="right_col" role="main">
+					<div class="">
+						<div class="row">
+							<div class="col-md-12 col-sm-12 ">
+								<div class="x_panel">
+									<div class="x_title">
+										<h2>Marka Düzenleme</h2>
+
+										<div class="clearfix"></div>
+									</div>
+									<div class="x_content">
+										<br />
+										<form enctype="multipart/form-data" asp-controller="Marka" asp-action="Edit" method="post" data-parsley-validate class="form-horizontal form-label-left">
+
+											<input asp-for="@Model.ID" type="hidden" />
+
+											<div class="item form-group">
+												<label class="col-form-label col-md-3 col-sm-3 label-align" asp-for="@Model.Ad"></label>
+												<div class="col-md-6 col-sm-6 ">
+													<input class="form-control " asp-for="@Model.Ad">
+													<span asp-validation-for="@Model.Ad"></span>
+												</div>
+											</div>
+
+
+											<div class="item form-group">
+												<div class="col-md-6 col-sm-6 offset-md-3">
+													<button class="btn btn-primary" asp-controller="Marka" asp-action="Index">İptal Et</button>
+													<button class="btn btn-primary" type="reset">Temizle</button>
+													<button type="submit" class="btn btn-success">Marka Düzenle</button>
+												</div>
+											</div>
+											@Html.AntiForgeryToken()
+										</form>
+									</div>
+								</div>
+							</div>
+						</div>
+
+
+					</div>
+				</div>
+            </main>
+        </div>
+    </div>
+    <script src="/admin/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+    <script src="/admin/js/scripts.js"></script>
+    <script src="/admin/js/simple-datatables.min.js" crossorigin="anonymous"></script>
+    <script src="/admin/js/datatables-simple-demo.js"></script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+﻿@model IQueryable<UrunResimEklee>
+<!DOCTYPE html>
+<html lang="tr">
+<body class="sb-nav-fixed">
+    <div id="layoutSidenav" class="right_col" role="main">
+        <div id="layoutSidenav_content">
+            <div>
+                <div class="clearfix"></div>
+
+                <div class="row" style="display: block;">
+
+                    <div class="col-md-12 col-sm-12  ">
+                        <div class="x_panel">
+                            <div class="col-md-6 col-sm-6  ">
+                                <h2>Slayt Yönetimi</h2>
+                            </div>
+                            <div class="col-md-6 col-sm-6  ">
+                                <a asp-controller="UrunResimEklee" asp-action="New" asp-route-urunid="@ViewBag.UrunId" class="btn btn-success float-right">
+                                    Yeni Slayt
+                                </a>
+                            </div>
+
+                            <div class="x_content">
+                                <div class="table-responsive">
+                                    <table class="table table-striped jambo_table bulk_action">
+                                        <thead>
+                                            <tr class="headings">
+                                                <th class="column-title">Ürün Resim Adı </th>
+                                                <th class="column-title">Sıra </th>
+                                                <th></th>
+                                            </tr>
+                                        </thead>
+
+                                        <tbody>
+                                            @foreach (UrunResimEklee u in Model)
+                                            {
+                                                <tr class="even pointer">
+
+                                                    <td class=" "><a asp-controller="UrunResimEklee" asp-action="Edit" asp-route-id="@u.ID">@u.Ad</a></td>
+                                                    <td class=" ">@u.DisplayIndex</td>
+                                                    <td><a asp-controller="UrunResimEklee" asp-action="Delete" asp-route-id="@u.ID" class="btn btn-danger">Sil</a></td>
+                                                </tr>
+                                            }
+
+                                        </tbody>
+                                    </table>
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

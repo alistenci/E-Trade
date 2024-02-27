@@ -1,0 +1,101 @@
+﻿@model IEnumerable<Kategori>
+<head>
+    <style>
+        .login{
+            width:50px;
+            height:50px;
+        }
+
+        button {
+            border: none;
+            background: none;
+            padding: 0;
+            margin: 0;
+            cursor: pointer;
+        }
+        .girisyap {
+            margin-top:-10px;
+            font-weight:bold;
+        }
+
+        .login-button {
+            width: 120px;
+            height: 40px;
+            color: black;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            text-align: center;
+            line-height: 40px;
+        }
+
+            .login-button:hover {
+                background-color: grey;
+            }
+    </style>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+
+</head>
+<header class="header-area header-sticky">
+    <div class="container">
+        <div class="row">
+            <div style="margin-left:-180px" class="col-12">
+                <nav class="main-nav">
+                    <!-- ***** Logo End ***** -->
+                    <!-- ***** Menu Start ***** -->
+                    <ul class="nav">
+                        <li><a href="/">Ana Sayfa</a></li>
+                        @foreach (Kategori k in Model.Where(x => x.ParentID == null))
+                        {
+                            <li class="submenu">
+                                <a href="#">@k.Name</a>
+                                @if (k.SubCategories.Any())
+                                {
+                                    <ul>
+                                        @foreach (Kategori subCategory in k.SubCategories)
+                                        {
+                                            <li><a href="/Default/Urunler?kategoriId=@subCategory.ID">@subCategory.Name</a></li>
+                                            // Kategoriye göre ürünlerin listelendiği ve beni gereksiz yere uğraştıran kod - 1 => Yaptığım değişiklik şu: /Default/Urunler/@subCategory.ID normalde böyleyken subCategory.ID'yi kategoriId'ye aktardım ve ilgili Actiona bu şekilde gönderdim'
+                                        }
+                                    </ul>
+                                }
+                            </li>
+                        }
+                        @if (Context.User.Identity.IsAuthenticated)
+                        {
+                            <form method="post" asp-controller="Account" asp-action="LogOut">
+                                <button style="background-color:whitesmoke" type="submit" class="login-button">
+                                    <i class="fas fa-sign-out-alt"></i> Çıkış Yap
+                                </button>
+                            </form>
+                        }
+                        else
+                        {
+                            <form method="post" asp-controller="Account" asp-action="Login">
+                                <button style="background-color:whitesmoke;" type="submit" class="login-button">
+                                    <i class="fas fa-sign-in-alt"></i> Giriş Yap
+                                </button>
+                            </form>
+
+                        }
+
+                        <form asp-controller="Sepet" asp-action="Index" method="post">
+                            <button style="margin-left:10px;background-color: lightgrey;" type="submit" class="login-button">
+                                <i class="fas fa-shopping-cart"></i> Sepet
+                            </button>
+                        </form>
+
+
+                    </ul>
+                    
+                    <a class='menu-trigger'>
+                        <span>Menu</span>
+                    </a>
+                    <!-- ***** Menu End ***** -->
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>

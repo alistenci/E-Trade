@@ -1,0 +1,316 @@
+﻿@model SatisKontrolVM
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="Responsive Bootstrap4 Shop Template, Created by Imran Hossain from https://imransdesign.com/">
+
+	<!-- title -->
+	<title>Check Out</title>
+
+	<!-- favicon -->
+	<link rel="shortcut icon" type="image/png" href="cart/img/favicon.png">
+	<!-- google font -->
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
+	<!-- fontawesome -->
+	<link href="~/cart/css/all.min.css" rel="stylesheet" />
+	<!-- bootstrap -->
+	<link href="~/cart/bootstrap/css/btsrt.min.css" rel="stylesheet" />
+	<!-- owl carousel -->
+	<link href="~/cart/css/owl.carousel.css" rel="stylesheet" />
+	<!-- magnific popup -->
+	<link href="~/cart/css/magnific-popup.css" rel="stylesheet" />
+	<!-- animate css -->
+	<link href="~/cart/css/animate.css" rel="stylesheet" />
+	<!-- mean menu css -->
+	<link href="~/cart/css/meanmenu.min.css" rel="stylesheet" />
+	<!-- main style -->
+	<link href="~/cart/css/main.css" rel="stylesheet" />
+	<!-- responsive -->
+	<link href="~/cart/css/responsive.css" rel="stylesheet" />
+
+	<style>
+		/* input alanlarının boyutunu özelleştirmek için kullandım */
+		input[type="text"], input[type="email"], input[type="password"] {
+			width: 100%; /* Input alanının yüzde bazında genişliği */
+			padding: 10px; /* Padding ayarı, içeriği çerçevelemek için */
+			font-size: 16px; /* Yazı tipi boyutu */
+			border: 1px solid #ccc; /* Kenarlık */
+			border-radius: 5px; /* Kenar yuvarlama */
+			margin-bottom: 10px; /* Alt boşluk */
+		}
+
+	</style>
+</head>
+<body>
+	<form asp-controller="Card" asp-action="CheckOut" method="post">
+	@{
+		decimal toplam = Model.Cards.Sum(x => x.Miktar * x.UrunFiyat);
+		decimal kargoUcreti = 50; // Kargo ücretini 50 TL olarak varsayalım
+		decimal genelToplam = toplam + kargoUcreti;
+	}
+	<!-- check out section -->
+	<div class="checkout-section mt-150 mb-150">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-8">
+					<div class="checkout-accordion-wrap">
+						<div class="accordion" id="accordionExample">
+							<div class="card single-accordion">
+								<div class="card-header" id="headingOne">
+									<h5 class="mb-0">
+										<button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+											Kişisel Bilgiler
+										</button>
+									</h5>
+								</div>
+
+								<div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+									<div class="card-body">
+										<div class="billing-address-form">
+											<div>
+													@Html.AntiForgeryToken()
+												<p><input type="text" asp-for="@Model.Siparis.NameSurname" placeholder="Adı Soyadı"></p>
+												<p><input type="text" asp-for="@Model.Siparis.MailAdress" placeholder="E-Posta"></p>
+													<p><input type="text" asp-for="@Model.Siparis.Phone" placeholder="Telefon"></p>
+													<input type="hidden" asp-for="@Model.Siparis.ToplamUcret" value="@genelToplam" />
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="card single-accordion">
+								<div class="card-header" id="headingTwo">
+									<h5 class="mb-0">
+										<button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+											Teslimat Bilgileri
+										</button>
+									</h5>
+								</div>
+								<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+									<div class="card-body">
+										<div class="billing-address-form">
+											<div>
+													@Html.AntiForgeryToken()
+													<p><input type="text" asp-for="@Model.Siparis.Il" placeholder="İl"></p>
+													<p><input type="text" asp-for="@Model.Siparis.Ilce" placeholder="İlçe"></p>
+													<p><input type="text" asp-for="@Model.Siparis.AcikAdres" placeholder="Açık Adres"></p>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="card single-accordion">
+								<div class="card-header" id="headingThree">
+									<h5 class="mb-0">
+										<button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+											Ödeme Bilgileri
+										</button>
+									</h5>
+								</div>
+								<div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+									<div class="card-body">
+										<div class="card-details">
+											<select class="selectPaymentOption form-control" asp-for="@Model.Siparis.OdemeSecenegi" asp-items="@Html.GetEnumSelectList<OdemeSecenegi>()" onchange="functSelectPaymentOption(this)">
+												<option value="">Bir Ödeme Türü Belirtin</option>
+											</select>
+										</div>
+										<div class="col-md-12">
+											<div class="card-body">
+												<div class="billing-address-form">
+													<div class="divPaymentOption creditCard" style="display: none;">
+														<form asp-controller="Card" asp-action="CheckOut" method="post">
+															<p><input type="text" autocomplete="off" placeholder="Kart Sahibinin Adı Soyadı"></p>
+															<p><input type="text" autocomplete="off" id="kartNumarasi" placeholder="Kredi Kartı Numarası" /></p>
+															<div id="kartTipiParagrafi" style="display: none;"></div>
+															<div class="row">
+																<div class="col-md-6">
+																	<select name="expiryMonth" asp-for="@Model.Siparis.CartMonth" id="expiryMonth" class="form-control">
+																		<option value="">Ay</option>
+																		@for (int i = 1; i <= 12; i++)
+																		{
+																			<option value="@i">@i</option>
+																		}
+																	</select>
+																</div>
+																<div class="col-md-6">
+																		<select name="expiryYear" asp-for="@Model.Siparis.CartYear" id="expiryYear" class="form-control">
+																		<option value="">Yıl</option>
+																		@for (int i = DateTime.Now.Year; i <= 2050; i++)
+																		{
+																			<option value="@i">@i</option>
+																		}
+																	</select>
+																</div>
+															</div>
+															<br />
+																<p><input type="text" autocomplete="off" asp-for="@Model.Siparis.CartCV2" placeholder="CVV"></p>
+														</form>
+													</div>
+												</div>
+											</div>
+											<div class="divPaymentOption bank" style="display: none;">
+												<h5>Havale / EFT ile Ödeme</h5>
+												<p>
+													Havale ile ödemelerde açıklama kısmına sipariş numarasını göndermeyi unutmayınız...
+												</p>
+											</div>
+											<div class="divPaymentOption door" style="display: none;">
+												<h5>Kapıda Nakit / Kredi Kartı ile Ödeme</h5>
+												<p>
+													Kapıda ödeme işlemlerinde kargo iade ücreti müşteriye aittir...
+												</p>
+											</div>
+												
+
+										</div>
+
+										<br />
+									</div>
+								</div>
+							</div>
+						</div>
+
+					</div>
+				</div>
+				<div class="col-lg-4">
+					<div class="order-details-wrap">
+						<table class="order-details">
+							<thead>
+								<tr>
+									<th>Sipariş Detayı</th>
+									<th>Fiyat</th>
+								</tr>
+							</thead>
+							<tbody class="order-details-body">
+								@foreach (var u in Model.Cards)
+								{
+									<tr>
+										<td>@u.UrunAdi</td>
+										<td>@(u.UrunFiyat * u.Miktar)</td>
+									</tr>
+								}
+								<tbody class="checkout-details">
+								<tr>
+									<td>Toplam</td>
+									<td>@toplam</td>
+								</tr>
+								<tr>
+									<td>Kargo</td>
+									<td>@kargoUcreti</td>
+								</tr>
+								<tr>
+									<td>Genel Toplam</td>
+									<td>@genelToplam</td>
+								</tr>
+							</tbody>
+						</table>
+						<button type="submit" class="btn btn-primary">Siparişi Tamamla</button> @*butona "submit" eklemeyi unutma. Bunu unuttuğum için uzun bir süre uğraştım*@
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	</form>
+	
+	<!-- end check out section -->
+	<!-- jquery -->
+	<script src="~/cart/js/jquery-1.11.3.min.js"></script>
+	<!-- bootstrap -->
+	<script src="~/cart/bootstrap/js/btsrp.min.js"></script>
+	<!-- count down -->
+	<script src="~/cart/js/jquery.countdown.js"></script>
+	<!-- isotope -->
+	<script src="~/cart/js/jquery.isotope-3.0.6.min.js"></script>
+	<!-- waypoints -->
+	<script src="~/cart/js/waypoints.js"></script>
+	<!-- owl carousel -->
+	<script src="~/cart/js/owl.carousel.min.js"></script>
+	<!-- magnific popup -->
+	<script src="~/cart/js/jquery.magnific-popup.min.js"></script>
+	<!-- mean menu -->
+	<script src="~/cart/js/jquery.meanmenu.min.js"></script>
+	<!-- sticker js -->
+	<script src="~/cart/js/sticker.js"></script>
+	<!-- main js -->
+	<script src="~/cart/js/main.js"></script>
+
+
+
+	<script>
+		function functSelectPaymentOption(_obje) {
+			var seciliOption = $(_obje).val();
+			if (seciliOption != "") {
+				$(".divPaymentOption").slideUp();
+				switch (seciliOption) {
+					case "1":
+						$(".creditCard").slideDown();
+						break;
+					case "2":
+						$(".bank").slideDown();
+						break;
+					case "3":
+						$(".door").slideDown();
+						break;
+
+				}
+			}
+		}
+
+	</script>
+	<script>
+		// Kredi kartı bin kontrolü yapacak olan API URL'i
+		var apiUrl = "https://api.apilayer.com/bincheck/";
+
+		// Kart numarası giriş alanı
+		var kartNumarasiInput = document.getElementById("kartNumarasi");
+
+		// Kart tipi gösterilecek olan div öğesi
+		var kartTipiParagrafi = document.getElementById("kartTipiParagrafi");
+
+		// Kart numarası alanına bir 'input' event dinleyici ekleyin
+		kartNumarasiInput.addEventListener("input", function () {
+			// Kart numarasını alın
+			var kartNumarasi = kartNumarasiInput.value;
+
+			if (kartNumarasi.length >= 6) {
+				// İlk 6 hane alınır (BIN)
+				var kartBin = kartNumarasi.substring(0, 6);
+
+				// API'ye GET isteği gönderin
+				fetch(apiUrl + kartBin, {
+					method: 'GET',
+					headers: {
+						'apikey': 'GbuyqXPO1WBJeFFyNM2rvLjazpW8YUao'
+					}
+				})
+					.then(response => response.json())
+					.then(data => {
+						// API yanıtından kart şirketini alın
+						var kartSirketi = data.scheme.toUpperCase();
+
+						// Kart şirketini kartTipiParagrafi div'ine yazdırın
+						kartTipiParagrafi.innerHTML = "Kart Tipi: " + kartSirketi;
+
+						// KartTipiParagrafi'ni görünür yapın
+						kartTipiParagrafi.style.display = "block";
+					})
+					.catch(error => {
+						// Hata durumunda kartTipiParagrafi'ni gizleyin ve hata mesajını gösterin
+						kartTipiParagrafi.style.display = "none";
+						console.error('Hata:', error);
+					});
+			} else {
+				// Kart numarası 6 haneden kısa ise paragrafı gizleyin
+				kartTipiParagrafi.style.display = "none";
+			}
+		});
+
+
+	</script>
+</body>
+</html>

@@ -1,0 +1,146 @@
+﻿@{
+	Layout = null;
+}
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Fashi Template">
+    <meta name="keywords" content="Fashi, unica, creative, html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Fashi | Template</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css?family=Muli:300,400,500,600,700,800,900&display=swap" rel="stylesheet">
+
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="/account/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="/account/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="/account/css/themify-icons.css" type="text/css">
+    <link rel="stylesheet" href="/account/css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="/account/css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="/account/css/nice-select.css" type="text/css">
+    <link rel="stylesheet" href="/account/css/jquery-ui.min.css" type="text/css">
+    <link rel="stylesheet" href="/account/css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="/account/css/style.css" type="text/css">
+</head>
+
+<body>
+
+    <!-- Register Section Begin -->
+    <div class="register-login-section spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 offset-lg-3">
+                    <div class="login-form">
+                        <h2>Login</h2>
+                        <form action="/admin/login" method="post">
+                            <div class="group-input">
+                                <label for="username">Username or email address *</label>
+                                <input type="text" name="username" id="username" value="@ViewBag.ReturnUrl">
+                            </div>
+
+
+                            <div class="group-input">
+                                <label for="pass">Password *</label>
+                                <input type="text" id="pass" name="password">
+                            </div>
+                            <div class="group-input gi-check">
+                                <div class="gi-more">
+                                    <label for="save-pass">
+                                        Save Password
+                                        <input type="checkbox" id="save-pass">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                    <a href="#" class="forget-pass">Forget your Password</a>
+                                </div>
+                            </div>
+                            <button type="submit" class="site-btn login-btn">Sign In</button>
+                            @Html.AntiForgeryToken()
+                        </form>
+                        <div class="switch-login">
+                            <a href="./register.html" class="or-login">Or Create An Account</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Register Form Section End -->
+    <!-- Js Plugins -->
+    <script src="/account/js/jquery-3.3.1.min.js"></script>
+    <script src="/account/js/bootstrap.min.js"></script>
+    <script src="/account/js/jquery-ui.min.js"></script>
+    <script src="/account/js/jquery.countdown.min.js"></script>
+    <script src="/account/js/jquery.nice-select.min.js"></script>
+    <script src="/account/js/jquery.zoom.min.js"></script>
+    <script src="/account/js/jquery.dd.min.js"></script>
+    <script src="/account/js/jquery.slicknav.js"></script>
+    <script src="/account/js/owl.carousel.min.js"></script>
+    <script src="/account/js/main.js"></script>
+</body>
+
+</html>
+
+@*<!DOCTYPE html>
+<html lang="tr" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <!--<title> Login and Registration Form in HTML & CSS | CodingLab </title>-->
+    <link rel="stylesheet" href="/login/style.css">
+    <!-- Fontawesome CDN Link -->
+    <link rel="stylesheet" href="/login/all.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <div class="container">
+        <input type="checkbox" id="flip">
+        <div class="cover">
+            <div class="front">
+                <img src="/login/images/frontImg.jpg" alt="">
+                <div class="text">
+                    <span class="text-1">Every new friend is a <br> new adventure</span>
+                    <span class="text-2">Let's get connected</span>
+                </div>
+            </div>
+            <div class="back">
+                <img class="backImg" src="/login/images/backImg.jpg" alt="">
+                <div class="text">
+                    <span class="text-1">Complete miles of journey <br> with one step</span>
+                    <span class="text-2">Let's get started</span>
+                </div>
+            </div>
+        </div>
+        <div class="forms">
+            <div class="form-content">
+                <div class="login-form">
+                    <div class="title">Login</div>
+                    <form action="/admin/login" method="post">
+                        <input type="hidden" name="ReturnUrl" value="@ViewBag.ReturnUrl" />
+                        <div class="input-boxes">
+                            <div class="input-box">
+                                <i class="fas fa-envelope"></i>
+                                <input type="text" name="username" class="form-control" placeholder="Kullanıcı Adı" required="" />
+                            </div>
+                            <div class="input-box">
+                                <i class="fas fa-lock"></i>
+                                <input type="password" name="password" class="form-control" placeholder="Parola" required="" />
+                            </div>
+                            <span style="color:red">@TempData["bilgi"]</span>
+                            <div class="text"><a href="#">Forgot password?</a></div>
+                            <div class="button input-box">
+                                <input type="submit" value="Sumbit">
+                            </div>
+                        </div>
+                        @Html.AntiForgeryToken()
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>*@
+
+

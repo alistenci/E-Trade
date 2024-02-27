@@ -1,0 +1,191 @@
+﻿@model SiparisOzetVM
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="Responsive Bootstrap4 Shop Template, Created by Imran Hossain from https://imransdesign.com/">
+
+	<!-- title -->
+	<title>Check Out</title>
+
+	<!-- favicon -->
+	<link rel="shortcut icon" type="image/png" href="cart/img/favicon.png">
+	<!-- google font -->
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
+	<!-- fontawesome -->
+	<link href="~/cart/css/all.min.css" rel="stylesheet" />
+	<!-- bootstrap -->
+	<link href="~/cart/bootstrap/css/btsrt.min.css" rel="stylesheet" />
+	<!-- owl carousel -->
+	<link href="~/cart/css/owl.carousel.css" rel="stylesheet" />
+	<!-- magnific popup -->
+	<link href="~/cart/css/magnific-popup.css" rel="stylesheet" />
+	<!-- animate css -->
+	<link href="~/cart/css/animate.css" rel="stylesheet" />
+	<!-- mean menu css -->
+	<link href="~/cart/css/meanmenu.min.css" rel="stylesheet" />
+	<!-- main style -->
+	<link href="~/cart/css/main.css" rel="stylesheet" />
+	<!-- responsive -->
+	<link href="~/cart/css/responsive.css" rel="stylesheet" />
+
+	<style>
+		/* input alanlarının boyutunu özelleştirmek için kullandım */
+		input[type="text"], input[type="email"], input[type="password"] {
+			width: 100%; /* Input alanının yüzde bazında genişliği */
+			padding: 10px; /* Padding ayarı, içeriği çerçevelemek için */
+			font-size: 16px; /* Yazı tipi boyutu */
+			border: 1px solid #ccc; /* Kenarlık */
+			border-radius: 5px; /* Kenar yuvarlama */
+			margin-bottom: 10px; /* Alt boşluk */
+		}
+	</style>
+</head>
+<body>
+	<form asp-controller="Card" asp-action="CheckOut" method="post">
+	<!-- check out section -->
+	<div class="checkout-section mt-150 mb-150">
+		<div class="container">
+			<div class="row">
+				<div style="margin-left:200px" class="col-lg-8">
+					<div class="checkout-accordion-wrap">
+						<div class="accordion" id="accordionExample">
+							<div class="card single-accordion">
+								<div class="card-header" id="headingOne">
+									<h5 class="mb-0">
+										<button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+											Sipariş Özeti
+										</button>
+									</h5>
+								</div>
+
+								<div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+									<div class="card-body">
+										<div class="billing-address-form">
+											<div>
+														<H4>Sipariş Numaranız:      @Model.SiparisListesi.OrderNumber </H4>
+													
+													@Html.AntiForgeryToken()
+													<div class="x_content">
+														<div class="table-responsive">
+															<table class="table table-striped jambo_table bulk_action">
+													<thead>
+																	<tr class="headings">
+																		<th class="column-title">Ürün Bilgileri</th>
+																	</tr>
+														<tr class="headings">
+															<th class="column-title">Ürün</th>
+															<th class="column-title">Resim </th>
+															<th class="column-title">Adet </th>
+															<th class="column-title">Fiyat </th>
+														</tr>
+													</thead>
+
+													<tbody>
+														@foreach (var kullanici in Model.Cards)
+														{
+															<tr class="even pointer siparis-row1">
+																<td>@kullanici.UrunAdi</td>
+																<td class="product-image"><img src="@kullanici.UrunResmi" alt=""></td>
+																<td>@kullanici.Miktar</td>
+																<td>@kullanici.UrunFiyat.ToString("C")</td>
+															</tr>
+														}
+																<td></td>
+																<td></td>
+																<td style="font-weight:bold">Kargo Ücreti</td>
+																<td>₺50</td>
+																<tr>
+																	<td></td>
+																	<td></td>
+																	<td style="font-weight:bold">Toplam Ücret</td>
+																	<td>@Model.SiparisListesi.ToplamUcret.ToString("C")</td>
+																</tr>
+
+															</table>
+
+
+														</div>
+														<br />
+														<div class="table-responsive">
+															<table class="table table-striped jambo_table bulk_action">
+																<thead>
+																	<tr class="headings">
+																		<th class="column-title">Adres Bilgileri</th>
+																	</tr>
+																	<tr class="headings">
+																		<th class="column-title">İl</th>
+																		<th class="column-title">İlçe </th>
+																		<th class="column-title">Açık Adres </th>
+																		<th class="column-title">Kargo Durumu </th>
+																	</tr>
+																</thead>
+
+																<tbody>
+																		<tr class="even pointer siparis-row1">
+																			<td>@Model.SiparisListesi.Il</td>
+																		<td>@Model.SiparisListesi.Ilce</td>
+																		<td>@Model.SiparisListesi.AcikAdres</td>
+																		<td>@Model.SiparisListesi.SiparisDurumu</td>
+																			
+																		</tr>
+
+																</tbody>
+															</table>
+
+														</div>
+											</div>
+												<br />
+													<p>Anasayfaya Yönlendiriliyor...</p>
+										</div>
+									</div>
+								</div>
+							</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+			</div>
+			</div>
+		</div>
+	</form>
+	
+	<!-- end check out section -->
+	<!-- jquery -->
+	<script src="~/cart/js/jquery-1.11.3.min.js"></script>
+	<!-- bootstrap -->
+	<script src="~/cart/bootstrap/js/btsrp.min.js"></script>
+	<!-- count down -->
+	<script src="~/cart/js/jquery.countdown.js"></script>
+	<!-- isotope -->
+	<script src="~/cart/js/jquery.isotope-3.0.6.min.js"></script>
+	<!-- waypoints -->
+	<script src="~/cart/js/waypoints.js"></script>
+	<!-- owl carousel -->
+	<script src="~/cart/js/owl.carousel.min.js"></script>
+	<!-- magnific popup -->
+	<script src="~/cart/js/jquery.magnific-popup.min.js"></script>
+	<!-- mean menu -->
+	<script src="~/cart/js/jquery.meanmenu.min.js"></script>
+	<!-- sticker js -->
+	<script src="~/cart/js/sticker.js"></script>
+	<!-- main js -->
+	<script src="~/cart/js/main.js"></script>
+
+	<script>
+		// Sayfayı yüklendiğinde 5 saniye sonra anasayfaya yönlendir
+		setTimeout(function () {
+			// Sepet bilgilerini sıfırla (Cookie'yi sil)
+			document.cookie = "MyCard=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+
+			// Anasayfaya yönlendir
+			window.location.href = "/";
+		}, 5000); // 5 saniye beklet
+	</script>
+</body>
+</html>

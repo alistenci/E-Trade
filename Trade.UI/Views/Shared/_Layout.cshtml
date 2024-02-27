@@ -1,0 +1,59 @@
+﻿<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" type="text/css" href="~/main/css/bootstrap.min.css">
+
+    <link rel="stylesheet" type="text/css" href="~/main/css/font-awesome.css">
+
+    <link rel="stylesheet" href="~/main/css/templatemo-hexashop.css">
+
+    <link rel="stylesheet" href="~/main/css/owl-carousel.css">
+
+	<link rel="stylesheet" href="~/main/css/lightbox.css">
+	<link href="~/main/css/style.css" rel="stylesheet" />
+
+</head>
+<body>
+<!-- ***** Header Area Start ***** -->
+<header class="header-area header-sticky">
+    <div class="container">
+        <div class="row">
+
+        </div>
+    </div>
+</header>
+<!-- ***** Header Area End ***** -->
+@await Component.InvokeAsync("Header")
+@RenderBody()
+
+<!-- ***** Footer Start ***** -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="first-item">
+                    <div class="logo">
+                        <img src="/img/white-logo.png" alt="hexashop ecommerce templatemo">
+                    </div>
+                    <ul>
+                        <li><a href="#">16501 Collins Ave, Sunny Isles Beach, FL 33160, United States</a></li>
+                        <li><a href="#">hexashop@company.com</a></li>
+                        <li><a href="#">010-020-0340</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <h4>Kategoriler</h4>
+                <ul>
+                    <li><a href="#">Erkek</a></li>
+                    <li><a href="#">Kadın</a></li>
+                        <li><a href="#">Çocuk</a></li>
+                        <li><a href="#">Aksesuar</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+</body>
+</html>

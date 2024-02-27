@@ -1,0 +1,22 @@
+﻿@model SiparisGuncelleViewModel
+@{
+    ViewData["Title"] = "Sipariş Durumu Güncelle";
+}
+
+<h2>Sipariş Durumu Güncelle</h2>
+
+<form asp-controller="Siparis" asp-action="KaydetSiparis" method="post">
+    <input type="hidden" asp-for="Siparis.ID" />
+
+    <div class="form-group">
+        <label for="Siparis.OrderNumber">Sipariş Numarası</label>
+        <input asp-for="Siparis.OrderNumber" class="form-control" disabled />
+    </div>
+
+    <div class="form-group">
+        <label for="Siparis.SiparisDurumu">Yeni Sipariş Durumu</label>
+        <select asp-for="Siparis.SiparisDurumu" asp-items="Model.SiparisDurumlari" class="form-control"></select>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Güncelle</button>
+</form>

@@ -1,0 +1,66 @@
+﻿@model IQueryable<Siparis>
+<!DOCTYPE html>
+<html lang="tr">
+<body class="sb-nav-fixed">
+    <div id="layoutSidenav" class="right_col" role="main">
+        <div id="layoutSidenav_content">
+            <div>
+                <div class="clearfix"></div>
+
+                <div class="row" style="display: block;">
+
+                    <div class="col-md-12 col-sm-12  ">
+                        <div class="x_panel">
+                            <div class="col-md-6 col-sm-6  ">
+                                <h2>Siparişler</h2>
+                            </div>
+
+                            <div class="x_content">
+                                <div class="table-responsive">
+                                    <table class="table table-striped jambo_table bulk_action">
+                                        <thead>
+                                            <tr class="headings">
+                                                <th class="column-title">Ürün Adı </th>
+                                                <th class="column-title">Fiyat </th>
+                                                <th class="column-title">Sipariş Durumu </th>
+                                                <th class="column-title">Sipariş Numarası</th>
+                                                <th class="column-title">Sipariş Güncelle</th>
+                                                <th></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach (var siparis in Model)
+                                            {
+                                                <tr class="even pointer siparis-row1">
+                                                    <td>
+                                                        <a asp-controller="Siparis" asp-action="Guncelle" asp-route-siparisId="@siparis.OrderNumber">@siparis.ProductName</a>
+                                                    </td>
+                                                    <td>@siparis.ToplamUcret</td>
+                                                    <td>@siparis.SiparisDurumu</td>
+                                                    <td>@siparis.OrderNumber</td>
+                                                    <td>
+                                                        <a asp-controller="Siparis" asp-action="Guncelle" asp-route-siparisId="@siparis.OrderNumber">Sipariş</a>
+                                                    </td>
+                                                    <td>
+                                                        <a asp-controller="Siparis" asp-action="Delete" asp-route-id="@siparis.ID" class="btn btn-danger">Sil</a>
+                                                    </td>
+                                                </tr>
+                                            }
+                                        </tbody>
+
+                                    </table>
+                                </div>
+
+
+
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,441 @@
+﻿@model IndexVM
+
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap" rel="stylesheet">
+
+    <title>Hexashop Ecommerce HTML CSS Template</title>
+
+
+    
+
+    <style>
+        .kapsayici {
+            max-width: 935px;
+            border: 2px solid #000;
+            overflow: hidden;
+            max-height: 791px;
+        }
+
+        .resimler {
+            display: flex;
+            width: 110%;
+            height: 110%;
+        }
+
+        .deneme {
+            width: 920px;
+            height: 793px;
+        }
+    </style>
+</head>
+
+    <body>
+        <!-- ***** Main Banner Area Start ***** -->
+        <div class="main-banner" id="top">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="left-content">
+                        <div class="kapsayici">
+                            <div class="resimler">
+                                @foreach (Slide s in Model.Slides)
+                                {
+                                    <img class="deneme" src="@s.Picture">
+                                }
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="right-content">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="right-first-image">
+                                        <div class="thumb">
+                                            <div class="inner-content">
+                                                <h4>Kadın</h4>
+                                                <span>Best Clothes For Women</span>
+                                            </div>
+                                            <div class="hover-content">
+                                                <div class="inner">
+                                                <h4>Kadın</h4>
+                                                    <p>Lorem ipsum dolor sit amet, conservisii ctetur adipiscing elit incid.</p>
+                                                    <div class="main-border-button">
+                                                        <a href="#">Discover More</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <img src="main/images/baner-right-image-01.jpg">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="right-first-image">
+                                        <div class="thumb">
+                                            <div class="inner-content">
+                                                <h4>Erkek</h4>
+                                                <span>Best Clothes For Men</span>
+                                            </div>
+                                            <div class="hover-content">
+                                                <div class="inner">
+                                                <h4>Erkek</h4>
+                                                    <p>Lorem ipsum dolor sit amet, conservisii ctetur adipiscing elit incid.</p>
+                                                    <div class="main-border-button">
+                                                        <a href="#">Discover More</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <img src="main/images/baner-right-image-02.jpg">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="right-first-image">
+                                        <div class="thumb">
+                                            <div class="inner-content">
+                                                <h4>Çocuk</h4>
+                                                <span>Best Clothes For Kids</span>
+                                            </div>
+                                            <div class="hover-content">
+                                                <div class="inner">
+                                                <h4>Çocuk</h4>
+                                                    <p>Lorem ipsum dolor sit amet, conservisii ctetur adipiscing elit incid.</p>
+                                                    <div class="main-border-button">
+                                                        <a href="#">Discover More</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <img src="main/images/baner-right-image-03.jpg">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="right-first-image">
+                                        <div class="thumb">
+                                            <div class="inner-content">
+                                                <h4>Aksesuar</h4>
+                                                <span>Best Trend Accessories</span>
+                                            </div>
+                                            <div class="hover-content">
+                                                <div class="inner">
+                                                <h4>Aksesuar</h4>
+                                                    <p>Lorem ipsum dolor sit amet, conservisii ctetur adipiscing elit incid.</p>
+                                                    <div class="main-border-button">
+                                                        <a href="#">Discover More</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <img src="main/images/baner-right-image-04.jpg">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ***** Main Banner Area End ***** -->
+        <!-- ***** Men Area Starts ***** -->
+        <section class="section" id="men">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="section-heading">
+                            <h2>Son Eklenen Ürünler (Erkek)</h2>
+                            <span>Details to details is what makes Hexashop different from the other themes.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="men-item-carousel">
+                            <div class="owl-men-item owl-carousel">
+                            @foreach (Urun u in Model.LastestProduct.Where(p => p.ustkategoribilgisi == "Erkek"))
+                            {
+                                <partial name="_Product" model="@u" />
+                            }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- ***** Men Area Ends ***** -->
+        <!-- ***** Women Area Starts ***** -->
+    <section class="section" id="women">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="section-heading">
+                        <h2>Son Eklenen Ürünler (Kadn)</h2>
+                        <span>Details to details is what makes Hexashop different from the other themes.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="women-item-carousel">
+                        <div class="owl-women-item owl-carousel">
+                            @foreach (Urun u in Model.LastestProduct.Where(p => p.ustkategoribilgisi == "Kadin"))
+                            {
+                                <partial name="_Product" model="@u" />
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+        <!-- ***** Women Area Ends ***** -->
+        <!-- ***** Kids Area Starts ***** -->
+    <section class="section" id="women">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="section-heading">
+                        <h2>Son Eklenen Ürünler (Çocuk)</h2>
+                        <span>Details to details is what makes Hexashop different from the other themes.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="women-item-carousel">
+                        <div class="owl-women-item owl-carousel">
+                            @foreach (Urun u in Model.LastestProduct.Where(p => p.ustkategoribilgisi == "Çocuk"))
+                            {
+                                <partial name="_Product" model="@u" />
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+        <!-- ***** Kids Area Ends ***** -->
+        <!-- ***** Accessories Area Starts ***** -->
+    <section class="section" id="women">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="section-heading">
+                        <h2>Son Eklenen Ürünler (Aksesuar)</h2>
+                        <span>Details to details is what makes Hexashop different from the other themes.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="women-item-carousel">
+                        <div class="owl-women-item owl-carousel">
+                            @foreach (Urun u in Model.LastestProduct.Where(p => p.ustkategoribilgisi == "Aksesuar"))
+                            {
+                                <partial name="_Product" model="@u" />
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ***** Accessories Area Ends ***** -->
+        <!-- ***** Social Area Starts ***** -->
+        <section class="section" id="social">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="section-heading">
+                            <h2>Sosyal Medya</h2>
+                            <span>Details to details is what makes Hexashop different from the other themes.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row images">
+                    <div class="col-2">
+                        <div class="thumb">
+                            <div class="icon">
+                                <a href="http://instagram.com">
+                                    <h6>Fashion</h6>
+                                    <i class="fa fa-instagram"></i>
+                                </a>
+                            </div>
+                            <img src="main/images/instagram-01.jpg" alt="">
+                        </div>
+                    </div>
+                    <div class="col-2">
+                        <div class="thumb">
+                            <div class="icon">
+                                <a href="http://instagram.com">
+                                    <h6>New</h6>
+                                    <i class="fa fa-instagram"></i>
+                                </a>
+                            </div>
+                            <img src="main/images/instagram-02.jpg" alt="">
+                        </div>
+                    </div>
+                    <div class="col-2">
+                        <div class="thumb">
+                            <div class="icon">
+                                <a href="http://instagram.com">
+                                    <h6>Brand</h6>
+                                    <i class="fa fa-instagram"></i>
+                                </a>
+                            </div>
+                            <img src="main/images/instagram-03.jpg" alt="">
+                        </div>
+                    </div>
+                    <div class="col-2">
+                        <div class="thumb">
+                            <div class="icon">
+                                <a href="http://instagram.com">
+                                    <h6>Makeup</h6>
+                                    <i class="fa fa-instagram"></i>
+                                </a>
+                            </div>
+                            <img src="main/images/instagram-04.jpg" alt="">
+                        </div>
+                    </div>
+                    <div class="col-2">
+                        <div class="thumb">
+                            <div class="icon">
+                                <a href="http://instagram.com">
+                                    <h6>Leather</h6>
+                                    <i class="fa fa-instagram"></i>
+                                </a>
+                            </div>
+                            <img src="main/images/instagram-05.jpg" alt="">
+                        </div>
+                    </div>
+                    <div class="col-2">
+                        <div class="thumb">
+                            <div class="icon">
+                                <a href="http://instagram.com">
+                                    <h6>Bag</h6>
+                                    <i class="fa fa-instagram"></i>
+                                </a>
+                            </div>
+                            <img src="main/images/instagram-06.jpg" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- ***** Social Area Ends ***** -->
+    <!-- jQuery -->
+    <script src="/main/js/jquery-2.1.0.min.js"></script>
+
+    <!-- Bootstrap -->
+    <script src="/main/js/popper.js"></script>
+    <script src="/main/js/bootstrap.min.js"></script>
+
+    <!-- Plugins -->
+    <script src="/main/js/owl-carousel.js"></script>
+    <script src="/main/js/accordions.js"></script>
+    <script src="/main/js/datepicker.js"></script>
+    <script src="/main/js/scrollreveal.min.js"></script>
+    <script src="/main/js/waypoints.min.js"></script>
+    <script src="/main/js/jquery.counterup.min.js"></script>
+    <script src="/main/js/imgfix.min.js"></script>
+    <script src="/main/js/slick.js"></script>
+    <script src="/main/js/lightbox.js"></script>
+    <script src="/main/js/isotope.js"></script>
+
+    <!-- Global Init -->
+    <script src="/main/js/custom.js"></script>
+    <script>
+
+        $(function() {
+            var selectedClass = "";
+            $("p").click(function(){
+            selectedClass = $(this).attr("data-rel");
+            $("#portfolio").fadeTo(50, 0.1);
+                $("#portfolio div").not("."+selectedClass).fadeOut();
+            setTimeout(function() {
+              $("."+selectedClass).fadeIn();
+              $("#portfolio").fadeTo(50, 1);
+            }, 500);
+
+            });
+        });
+
+        $(document).ready(function () {
+            // Otomatik kaydırma aralıkları (ms cinsinden)
+            var kidAutoScrollInterval = 2000;
+            var womenAutoScrollInterval = 3000;
+            var menAutoScrollInterval = 3800;
+
+            // Carousel öğelerini seçin
+            var menCarousel = $(".owl-men-item.owl-carousel");
+            var kidCarousel = $(".owl-kid-item.owl-carousel");
+            var womenCarousel = $(".owl-women-item.owl-carousel");
+
+            // Otomatik kaydırma işlevi
+            function autoScroll(carousel, interval) {
+                carousel.trigger("next.owl.carousel");
+            }
+
+            // Otomatik kaydırma işlevlerini belirtilen aralıklarda çağırın
+            setInterval(function () {
+                autoScroll(kidCarousel, kidAutoScrollInterval);
+            }, kidAutoScrollInterval);
+
+            setInterval(function () {
+                autoScroll(womenCarousel, womenAutoScrollInterval);
+            }, womenAutoScrollInterval);
+            setInterval(function () {
+                autoScroll(menCarousel, menAutoScrollInterval);
+            }, menAutoScrollInterval);
+        });
+
+    </script>
+
+    <script>
+        var slide = document.querySelector(".resimler");
+        var resim = document.querySelectorAll(".deneme");
+        var sayi = 0;
+        var genislik = 920;
+
+        slide.style.transform = 'translateX(' + (-sayi * genislik) + 'px)';
+        function sonraki() {
+            sayi++;
+            if (sayi >= resim.length) {
+                sayi = 0;
+            }
+            slide.style.transition = "transform 0.5s ease";
+            slide.style.transform = 'translateX(' + (-sayi * genislik) + 'px)';
+            console.log(sayi);
+        }
+        function onceki() {
+            sayi--;
+            if (sayi < 0) {
+                sayi = resim.length - 1;
+            }
+            slide.style.transition = "transform 0.5s ease";
+            slide.style.transform = 'translateX(' + (-sayi * genislik) + 'px)';
+            console.log(sayi);
+        }
+        sure = setInterval(sonraki, 4000);
+
+    </script>
+
+</body>
+</html>

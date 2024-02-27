@@ -1,0 +1,132 @@
+﻿@model CardVM
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="Responsive Bootstrap4 Shop Template, Created by Imran Hossain from https://imransdesign.com/">
+
+	<!-- title -->
+	<title>Cart</title>
+
+	<!-- favicon -->
+	<link rel="shortcut icon" type="image/png" href="cart/img/favicon.png">
+	<!-- google font -->
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
+	<!-- fontawesome -->
+	<link rel="stylesheet" href="cart/css/all.min.css">
+	<!-- bootstrap -->
+	<link rel="stylesheet" href="cart/bootstrap/css/bootstrap.min.css">
+	<!-- owl carousel -->
+	<link rel="stylesheet" href="cart/css/owl.carousel.css">
+	<!-- magnific popup -->
+	<link rel="stylesheet" href="cart/css/magnific-popup.css">
+	<!-- animate css -->
+	<link rel="stylesheet" href="cart/css/animate.css">
+	<!-- mean menu css -->
+	<link rel="stylesheet" href="cart/css/meanmenu.min.css">
+	<!-- main style -->
+	<link rel="stylesheet" href="cart/css/main.css">
+	<!-- responsive -->
+	<link rel="stylesheet" href="cart/css/responsive.css">
+
+</head>
+<body>
+	@{
+		decimal toplam = Model.Cards.Sum(x => x.Miktar * x.UrunFiyat);
+		decimal kargoUcreti = 50;
+		decimal genelToplam = toplam + kargoUcreti;
+	}
+	<!-- cart -->
+	<div class="cart-section mt-150 mb-150">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-8 col-md-12">
+					<div class="cart-table-wrap">
+						<table class="cart-table">
+							<thead class="cart-table-head">
+								<tr class="table-head-row">
+									<th class="product-remove"></th>
+									<th class="product-image">Ürün Resmi</th>
+									<th class="product-name">Ürün İsmi</th>
+									<th class="product-price">Fiyat</th>
+									<th class="product-quantity">Miktar</th>
+									<th class="product-total">Toplam</th>
+								</tr>
+							</thead>
+							<tbody>
+								@foreach (var c in Model.Cards)
+								{
+								<tr class="table-body-row">
+									<td class="product-remove"><a href="#"><i class="far fa-window-close"></i></a></td>
+										<td class="product-image"><img src="@c.UrunResmi" alt=""></td>
+									<td class="product-name">@c.UrunAdi</td>
+										<td class="product-price">@c.UrunFiyat.ToString("C")</td>
+										<td class="product-quantity"><input type="number" value="@c.Miktar"></td>
+										<td class="product-total">@(c.UrunFiyat * c.Miktar)</td>
+								</tr>
+								}
+							</tbody>
+						</table>
+					</div>
+				</div>
+				<div class="col-lg-4">
+					<div class="total-section">
+						<table class="total-table">
+							<thead class="total-table-head">
+								<tr class="table-total-row">
+									<th>Toplam</th>
+									<th>Fiyat</th>
+								</tr>
+							</thead>
+							<tbody>
+									<tr class="total-data">
+										<td><strong>Toplam </strong></td>
+									<td>@toplam.ToString("C")</td>
+									</tr>
+									<tr class="total-data">
+										<td><strong>Kargo Ücreti </strong></td>
+									<td>@kargoUcreti.ToString("C")</td>
+									</tr>
+									<tr class="total-data">
+										<td><strong>Genel Toplam </strong></td>
+									<td>@genelToplam.ToString("C")</td>
+									</tr>
+							</tbody>
+						</table>
+						<div class="cart-buttons">
+							<a asp-controller="Default" asp-action="Index" class="boxed-btn">Alışverişe Devam</a>
+							<a asp-controller="Card" asp-action="CheckOut" class="boxed-btn black">Siparişi Tamamla</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end cart -->
+	<!-- jquery -->
+	<script src="cart/js/jquery-1.11.3.min.js"></script>
+	<!-- bootstrap -->
+	<script src="cart/bootstrap/js/bootstrap.min.js"></script>
+	<!-- count down -->
+	<script src="cart/js/jquery.countdown.js"></script>
+	<!-- isotope -->
+	<script src="cart/js/jquery.isotope-3.0.6.min.js"></script>
+	<!-- waypoints -->
+	<script src="cart/js/waypoints.js"></script>
+	<!-- owl carousel -->
+	<script src="cart/js/owl.carousel.min.js"></script>
+	<!-- magnific popup -->
+	<script src="cart/js/jquery.magnific-popup.min.js"></script>
+	<!-- mean menu -->
+	<script src="cart/js/jquery.meanmenu.min.js"></script>
+	<!-- sticker js -->
+	<script src="cart/js/sticker.js"></script>
+	<!-- main js -->
+	<script src="cart/js/main.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,139 @@
+﻿@model User
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Fashi Template">
+    <meta name="keywords" content="Fashi, unica, creative, html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Kaydol</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css?family=Muli:300,400,500,600,700,800,900&display=swap" rel="stylesheet">
+
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="/account/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="/account/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="/account/css/themify-icons.css" type="text/css">
+    <link rel="stylesheet" href="/account/css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="/account/css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="/account/css/nice-select.css" type="text/css">
+    <link rel="stylesheet" href="/account/css/jquery-ui.min.css" type="text/css">
+    <link rel="stylesheet" href="/account/css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="/account/css/style.css" type="text/css">
+</head>
+
+<body>
+    <!-- Register Section Begin -->
+    <br />
+    <br />
+    <div class="register-login-section spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 offset-lg-3">
+                    <div class="register-form">
+                        <h2>Hesap Oluştur</h2>
+
+                        <form action="/Account/Register" method="post" id="register-form">
+                            <div class="group-input">
+                                <label for="Ad">Ad *</label>
+                                <input type="text" name="Ad">
+                            </div>
+                            <div class="group-input">
+                                <label for="Soyad">Soyad *</label>
+                                <input type="text" name="Soyad">
+                            </div>
+                            <div class="group-input">
+                                <label for="kullaniciAdi">Kullanıcı Adı*</label>
+                                <input type="text" name="kullaniciAdi">
+                            </div>
+                            <div class="group-input">
+                                <label for="eMail">Email *</label>
+                                <input type="text" name="eMail">
+                            </div>
+                            <div class="group-input">
+                                <label for="Sifre">Sifre *</label>
+                                <input type="password" name="Sifre">
+                            </div>
+                            <form method="post">
+                                <button type="submit" class="site-btn register-btn">Kaydol</button>
+                            </form>
+                            @*<button type="submit" class="site-btn register-btn">Kaydol</button>*@
+                            
+                        </form>
+                        <div class="switch-login">
+                            <a href="/Account/SignUp" class="or-login">Giriş Yap</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="successModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    Kayıt başarıyla tamamlandı. Yönlendiriliyorsunuz...
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Register Form Section End -->
+    <!-- Js Plugins -->
+  
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <!-- jQuery kütüphanesini ekledik -->
+    <script src="/account/js/bootstrap.min.js"></script>
+    <script src="/account/js/jquery-ui.min.js"></script>
+    <script src="/account/js/jquery.countdown.min.js"></script>
+    <script src="/account/js/jquery.nice-select.min.js"></script>
+    <script src="/account/js/jquery.zoom.min.js"></script>
+    <script src="/account/js/jquery.dd.min.js"></script>
+    <script src="/account/js/jquery.slicknav.js"></script>
+    <script src="/account/js/owl.carousel.min.js"></script>
+    <script src="/account/js/main.js"></script>
+
+    <script>
+        // Kayıt başarılı olduğunda modalı görüntüle ve sunucu tarafında kayıt işlemini başlat
+        function showSuccessModalAndWait() {
+            $('#successModal').modal('show');
+
+            // Sunucu tarafında kayıt işlemi
+            $.ajax({
+                type: 'POST',
+                url: '/Account/Register', // Sunucu tarafındaki kayıt işlemi yapacak URL
+                data: $('#register-form').serialize(), // Kayıt formundaki veriler
+                success: function (response) {
+                    // Sunucu tarafındaki işlem başarılı ise, başka bir sayfaya yönlendir
+                    window.location.href = '/Account/Login';
+                },
+                error: function (error) {
+                    //işlem başarısız ise, hata işlemi
+                    console.log(error);
+                },
+                complete: function () {
+                    $('#successModal').modal('hide');
+                }
+            });
+        }
+
+        // Kayıt formu submit olduğunda modalı göster ve sunucu tarafında kayıt işlemi
+        $(document).ready(function () {
+            $('#register-form').submit(function (e) {
+                e.preventDefault();
+
+                // Kayıt işleminin başarılı
+                var isSuccessful = true;
+
+                if (isSuccessful) {
+                    showSuccessModalAndWait();
+                }
+            });
+        });
+    </script>
+
+
+</body>
+</html>

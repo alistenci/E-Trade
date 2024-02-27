@@ -1,0 +1,118 @@
+﻿@model KategoriVM
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+	<meta name="description" content="" />
+	<meta name="author" content="" />
+	<title>Tables - SB Admin</title>
+	<link href="/admin/dist/style.min.css" rel="stylesheet" />
+	<link href="/admin/css/styles.css" rel="stylesheet" />
+	<script src="/admin/js/all.js" crossorigin="anonymous"></script>
+</head>
+<body class="sb-nav-fixed">
+	<div id="layoutSidenav">
+		<div id="layoutSidenav_content">
+			<main>
+				<div class="right_col" role="main">
+					<div class="">
+						<div class="row">
+							<div class="col-md-12 col-sm-12 ">
+								<div class="x_panel">
+									<div class="x_title">
+										<h2>Yeni Kategori</h2>
+
+										<div class="clearfix"></div>
+									</div>
+									<div class="x_content">
+										<br />
+										<form enctype="multipart/form-data" asp-controller="Kategori" asp-action="Insert" method="post" data-parsley-validate class="form-horizontal form-label-left">
+
+											<div class="item form-group">
+												<label class="col-form-label col-md-3 col-sm-3 label-align" asp-for="@Model.Kategori.Name"></label>
+												<div class="col-md-6 col-sm-6 ">
+													<input class="form-control " asp-for="@Model.Kategori.Name">
+													<span asp-validation-for="@Model.Kategori.Name"></span>
+												</div>
+											</div>
+
+
+											<div class="item form-group">
+												<label class="col-form-label col-md-3 col-sm-3 label-align" asp-for="@Model.Kategori.DisplayIndex"></label>
+												<div class="col-md-6 col-sm-6 ">
+													<input class="form-control " asp-for="@Model.Kategori.DisplayIndex">
+													<span asp-validation-for="@Model.Kategori.DisplayIndex"></span>
+												</div>
+											</div>
+
+
+											<div class="item form-group">
+												<label class="col-form-label col-md-3 col-sm-3 label-align" asp-for="@Model.Kategori.ParentID"></label>
+												<div class="col-md-6 col-sm-6 ">
+													<select class="form-control" asp-for="@Model.Kategori.ParentID" asp-items="@Model.Kategoriler.Select(x => new SelectListItem{Text = x.Name, Value=x.ID.ToString()})">
+														<option value="">Üst Kategori Seçiniz</option>
+													</select>
+													<span asp-validation-for="@Model.Kategori.ParentID"></span>
+												</div>
+											</div>
+											
+
+
+
+
+											@*<div class="col-md-6 col-sm-6 ">
+												<select id="select2" class="form-control" asp-for="@Model.Kategori.KategoriFiltreleme" asp-items="@Model.Kategoriler.Select(x => new SelectListItem{Text = x.Name})" style="display: none;">
+												</select>
+												<option value=""></option>
+												<span asp-validation-for="@Model.Kategori.KategoriFiltreleme"></span>
+											</div>*@
+
+
+
+
+
+
+
+
+											<div class="item form-group">
+												<div class="col-md-6 col-sm-6 offset-md-3">
+													<button class="btn btn-primary" asp-controller="Kategori" asp-action="Index">İptal Et</button>
+													<button class="btn btn-primary" type="reset">Temizle</button>
+													<button type="submit" class="btn btn-success">Kategori Ekle</button>
+												</div>
+											</div>
+											@Html.AntiForgeryToken()
+										</form>
+									</div>
+								</div>
+							</div>
+						</div>
+
+
+					</div>
+				</div>
+			</main>
+		</div>
+	</div>
+	<script src="/admin/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+	<script src="/admin/js/scripts.js"></script>
+	<script src="/admin/js/simple-datatables.min.js" crossorigin="anonymous"></script>
+	<script src="/admin/js/datatables-simple-demo.js"></script>
+	@*<script>
+	function copySelectedValue() {
+	// İlk select elementini seç
+	var select1 = document.getElementById("select1");
+	// İkinci select elementini seç
+	var select2 = document.getElementById("select2");
+
+	// İlk select elementinden seçilen optionu al
+	var selectedValue = select1.options[select1.selectedIndex].value;
+
+	// İkinci select elementine kopyala
+	select2.value = selectedValue;
+	}
+	</script>*@
+</body>
+</html>

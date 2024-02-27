@@ -1,0 +1,67 @@
+﻿@model UrunResimEklee
+!DOCTYPE html>
+<html lang="tr">
+<body class="sb-nav-fixed">
+	<div id="layoutSidenav" class="right_col" role="main">
+		<div id="layoutSidenav_content">
+			<div>
+				<div class="clearfix"></div>
+
+				<div class="row" style="display: block;">
+
+					<div class="col-md-12 col-sm-12  ">
+						<div class="x_panel">
+							<div class="x_title">
+								<h2>Slayt Düzenleme</h2>
+
+								<div class="clearfix"></div>
+							</div>
+							<div class="x_content">
+								<br />
+								<form enctype="multipart/form-data" asp-controller="UrunResimEklee" asp-action="Edit" method="post" data-parsley-validate class="form-horizontal form-label-left">
+
+									<input asp-for="@Model.ID" type="hidden" />
+									<input asp-for="@Model.UrunID" type="hidden" />
+									<div class="item form-group">
+										<label class="col-form-label col-md-3 col-sm-3 label-align" asp-for="@Model.Ad"></label>
+										<div class="col-md-6 col-sm-6 ">
+											<input class="form-control " asp-for="@Model.Ad">
+											<span asp-validation-for="@Model.Ad"></span>
+										</div>
+									</div>
+
+									<div class="item form-group">
+										<label class="col-form-label col-md-3 col-sm-3 label-align" asp-for="@Model.Resim"></label>
+										<div class="col-md-6 col-sm-6 ">
+											<input class="form-control " asp-for="@Model.Resim" type="file">
+											<span asp-validation-for="@Model.Resim"></span>
+										</div>
+									</div>
+
+									<div class="item form-group">
+										<label class="col-form-label col-md-3 col-sm-3 label-align" asp-for="@Model.DisplayIndex"></label>
+										<div class="col-md-6 col-sm-6 ">
+											<input class="form-control " asp-for="@Model.DisplayIndex">
+											<span asp-validation-for="@Model.DisplayIndex"></span>
+										</div>
+									</div>
+
+
+									<div class="item form-group">
+										<div class="col-md-6 col-sm-6 offset-md-3">
+											<button class="btn btn-primary" asp-controller="UrunResimEklee" asp-action="Index">İptal Et</button>
+											<button class="btn btn-primary" type="reset">Temizle</button>
+											<button type="submit" class="btn btn-success">Slayt Düzenle</button>
+										</div>
+									</div>
+									@Html.AntiForgeryToken()
+								</form>
+							</div>
+						</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+</body>
+</html>

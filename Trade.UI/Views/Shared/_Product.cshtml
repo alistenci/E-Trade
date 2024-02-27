@@ -1,0 +1,28 @@
+﻿@model Urun
+<section class="section">
+    <div class="item">
+        <div class="thumb">
+            <div class="hover-content">
+				<div class="resim_kapsayici">
+					<a asp-controller="Product" asp-action="Detail" asp-route-name="@GeneralTools.GetUrl(Model.Urun_Adi)" asp-route-id="@Model.ID" class="add-card">
+						<ul>
+							<li><i class="fa fa-shopping-cart"></i></li>
+						</ul>
+					</a>
+				</div>
+            </div>
+			@if (Model.UrunResimler.Any())
+			{
+				<img src="@Model.UrunResimler.FirstOrDefault().Resim" alt="@Model.Urun_Adi">
+			}
+			else
+			{
+				<img src="/img/hazirlaniyor.png" alt="@Model.Urun_Adi">
+			}
+        </div>
+        </div>
+	<div class="pi-text">
+		<h6>@Model.Urun_Fiyat</h6>
+		<p>@Model.Urun_Adi</p>
+	</div>
+</section>

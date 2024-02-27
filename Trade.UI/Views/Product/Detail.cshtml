@@ -1,0 +1,206 @@
+﻿@model ProductVM
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700" rel="stylesheet">
+
+
+
+    <!-- Bootstrap core CSS -->
+    <link href="/singleproduct/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" href="/singleproduct/assets/css/fontawesome.css">
+    <link rel="stylesheet" href="/singleproduct/assets/css/tooplate-main.css">
+    <link rel="stylesheet" href="/singleproduct/assets/css/owl.css">
+    <link rel="stylesheet" href="/singleproduct/assets/css/flex-slider.css">
+    <!--
+    Tooplate 2114 Pixie
+     https://www.tooplate.com/view/2114-pixie
+     -->
+    <style>
+        
+
+        .share h1 {
+            color: #333;
+        }
+
+        .share label {
+            font-weight: bold;
+        }
+
+        .share select {
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .share #secilen-beden {
+            font-weight: bold;
+            color: #009688;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Single Starts Here -->
+    <div class="single-product">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="section-heading">
+                        <div class="line-dec"></div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="product-slider">
+
+
+                        <div id="slider" class="flexslider">
+                            <ul class="slides">
+                                @foreach (var item in Model.Urun.UrunResimler)
+                                {
+                                    <li>
+                                        <img src="@item.Resim" />
+                                    </li>
+                                }
+                            </ul>
+                        </div>
+
+
+                        
+                        <div id="carousel" class="flexslider">
+                            <ul class="slides">
+                                @foreach (var item in Model.Urun.UrunResimler)
+                                {
+                                    <li>
+                                        <img src="@item.Resim" />
+                                    </li>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="right-content">
+                        <h4>@Model.Urun.Urun_Adi</h4>
+                        <h6>@Model.Urun.Urun_Fiyat</h6>
+                        @*<span id="stokMiktar">Stokta Kalan Ürün Miktarı @Model.Urun.Stok</span>*@
+                        <form action="" method="get">
+                            <label for="quantity">Miktar:</label>
+                            <input name="quantity" class="quantity-text" id="quantity"
+                                   onfocus="if(this.value == '1') { this.value = ''; }"
+                                   onBlur="if(this.value == '') { this.value = '1';}"
+                                   value="1">
+                            <button id="sepeteEkleButton" onclick="AddCart(@Model.Urun.ID, @Model.Urun.Stok)" class="button">SEPETE EKLE</button>
+                        </form>
+                        <br />
+                        <div class="down-content">
+                            <div class="share">
+
+                                <label for="beden">Beden:</label>
+                                <select id="beden" name="beden">
+                                    <option value="small">Small</option>
+                                    <option value="medium">Medium</option>
+                                    <option value="large">Large</option>
+                                    <option value="xlarge">X-Large</option>
+                                </select>
+                            </div>
+                            <div class="categories">
+                                <h6>Kategori: <span><a href="#">@Model.Urun.ustkategoribilgisi</a></span></h6>
+                            </div>
+                            
+                            <div class="share">
+                                <p style="font-weight:bold;">Ürün Detay</p>
+                                <p>@Model.Urun.Detay</p>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+   @* <div class="modal fade" id="modelSepet" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel"></h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                </div>
+            </div>
+        </div>
+    </div>*@
+
+    <div class="modal fade" id="modelSepet" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel"></h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- Modal içeriği buraya gelecek -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="/singleproduct/vendor/jquery/jquery.min.js"></script>
+    <script src="/singleproduct/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+
+    <!-- Additional Scripts -->
+    <script src="/singleproduct/assets/js/custom.js"></script>
+    <script src="/singleproduct/assets/js/owl.js"></script>
+    <script src="/singleproduct/assets/js/isotope.js"></script>
+    <script src="/singleproduct/assets/js/flex-slider.js"></script>
+    <script language="text/Javascript">
+        cleared[0] = cleared[1] = cleared[2] = 0;
+        function clearField(t) {
+            if (!cleared[t.id]) {
+                cleared[t.id] = 1;
+                t.value = ''; 
+                t.style.color = '#fff';
+            }
+        }
+    </script>
+    <script>
+        function AddCart(urunid, stok) {
+            var istenilenMiktar = $("#quantity").val();
+            if (istenilenMiktar <= 0) alert("NOT: Ürün Eklemediniz")
+            else if (istenilenMiktar <= stok) {
+                $.ajax({
+                    type: "POST",
+                    url: "/sepet/sepeteekle",
+                    data: { "urunid": urunid, "miktar": istenilenMiktar },
+                    success: function (data) {
+                        if (data.indexOf("~") == -1) {
+                            $('#modelSepet .modal-body').text(data + " ürününden " + istenilenMiktar + " adet sepete başarıyla eklendi...")
+                            $('#modelSepet').modal('show');
+                            getCartCount();
+                        }
+                    },
+                    error: function (e) {
+                        alert(e.responseText)
+                    }
+                });
+
+            } else alert("Bu üründen maksimum " + stok + " adet sipariş verebilirsiniz.")
+        }
+    </script>
+
+
+</body>
+
+</html>

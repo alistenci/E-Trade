@@ -1,0 +1,57 @@
+﻿@model RolGuncelleViewModel
+@{
+    ViewData["Title"] = "Rol Güncelle";
+}
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <!-- Diğer head içeriği buraya gelebilir -->
+</head>
+<body class="sb-nav-fixed">
+    <div id="layoutSidenav">
+        <div id="layoutSidenav_content">
+            <main>
+                <div class="right_col" role="main">
+                    <div class="">
+                        <div class="row">
+                            <div class="col-md-12 col-sm-12">
+                                <div class="x_panel">
+                                    <div class="x_title">
+                                        <h2>Sipariş Durumu</h2>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <div class="x_content">
+                                        <form asp-controller="Home" asp-action="Kaydet" method="post">
+                                            <input type="hidden" asp-for="Kullanici.Id" />
+
+                                            <div class="form-group">
+                                                <label for="Kullanici.Ad">Kullanıcı Adı</label>
+                                                <input asp-for="Kullanici.kullaniciAdi" class="form-control" disabled />
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="Kullanici.RolId">Yeni Rol</label>
+                                                <select asp-for="Kullanici.RolId" asp-items="Model.Roller" class="form-control"></select>
+                                            </div>
+
+                                            <button type="submit" class="btn btn-primary">Güncelle</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+    <!-- Diğer script etiketleri buraya gelebilir -->
+</body>
+</html>
+
+
+
+
+<h2>Rol Güncelle</h2>
+
+

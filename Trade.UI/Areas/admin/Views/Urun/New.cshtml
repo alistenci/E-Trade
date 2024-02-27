@@ -1,0 +1,155 @@
+﻿@model UrunVM
+!DOCTYPE html>
+<html lang="tr">
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+	<meta name="description" content="" />
+	<meta name="author" content="" />
+	<title>Tables - SB Admin</title>
+	<link href="/admin/dist/style.min.css" rel="stylesheet" />
+	<link href="/admin/css/styles.css" rel="stylesheet" />
+	<script src="/admin/js/all.js" crossorigin="anonymous"></script>
+</head>
+<body class="sb-nav-fixed">
+	<div id="layoutSidenav">
+		<div id="layoutSidenav_content">
+			<main>
+				<div class="right_col" role="main">
+					<div class="">
+						<div class="row">
+							<div class="col-md-12 col-sm-12 ">
+								<div class="x_panel">
+									<div class="x_title">
+										<h2>Yeni Urun</h2>
+
+										<div class="clearfix"></div>
+									</div>
+                                    <div class="x_content">
+                                        <br />
+                                        <form enctype="multipart/form-data" asp-controller="Urun" asp-action="Insert" method="post" data-parsley-validate class="form-horizontal form-label-left">
+
+                                            <div class="item form-group">
+                                                <label class="col-form-label col-md-3 col-sm-3 label-align" asp-for="@Model.Urun.Urun_Adi"></label>
+                                                <div class="col-md-9 col-sm-9 ">
+                                                    <input class="form-control " asp-for="@Model.Urun.Urun_Adi">
+                                                    <span asp-validation-for="@Model.Urun.Urun_Adi"></span>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="item form-group">
+                                                <label class="col-form-label col-md-3 col-sm-3 label-align" asp-for="@Model.Urun.Kategori_Id"></label>
+                                                <div class="col-md-9 col-sm-9 ">
+                                                    <select id="select1" class="form-control" asp-for="@Model.Urun.Kategori_Id" asp-items="@Model.Kategoriler.Select(x => new SelectListItem {Text =x.Name, Value=x.ID.ToString()})">
+                                                        <option value="">Kategori Seçiniz</option>
+                                                    </select>
+                                                    <span asp-validation-for="@Model.Urun.Kategori_Id"></span>
+                                                </div>
+                                            </div>
+
+
+
+
+
+
+                                            <div class="item form-group">
+                                                <label class="col-form-label col-md-3 col-sm-3 label-align" asp-for="@Model.Urun.MarkaID"></label>
+                                                <div class="col-md-9 col-sm-9 ">
+                                                    <select class="form-control" asp-for="@Model.Urun.MarkaID" asp-items="@Model.Markalar.Select(x => new SelectListItem {Text =x.Ad, Value=x.ID.ToString()})">
+                                                        <option value="">Marka Seçiniz</option>
+                                                    </select>
+                                                    <span asp-validation-for="@Model.Urun.MarkaID"></span>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="item form-group">
+                                                <label class="col-form-label col-md-3 col-sm-3 label-align" asp-for="@Model.Urun.Urun_Fiyat"></label>
+                                                <div class="col-md-9 col-sm-9 ">
+                                                    <input class="form-control " asp-for="@Model.Urun.Urun_Fiyat">
+                                                    <span asp-validation-for="@Model.Urun.Urun_Fiyat"></span>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="item form-group">
+                                                <label class="col-form-label col-md-3 col-sm-3 label-align" asp-for="@Model.Urun.Stok"></label>
+                                                <div class="col-md-9 col-sm-9 ">
+                                                    <input class="form-control " asp-for="@Model.Urun.Stok">
+                                                    <span asp-validation-for="@Model.Urun.Stok"></span>
+                                                </div>
+                                            </div>
+
+                                            <div class="item form-group">
+                                                <label class="col-form-label col-md-3 col-sm-3 label-align" asp-for="@Model.Urun.Urun_Aciklamasi"></label>
+                                                <div class="col-md-9 col-sm-9 ">
+                                                    <input class="form-control " asp-for="@Model.Urun.Urun_Aciklamasi">
+                                                    <span asp-validation-for="@Model.Urun.Urun_Aciklamasi"></span>
+                                                </div>
+                                            </div>
+
+                                            <div class="item form-group">
+                                                <label class="col-form-label col-md-3 col-sm-3 label-align" asp-for="@Model.Urun.Detay"></label>
+                                                <div class="col-md-9 col-sm-9 ">
+                                                    <textarea class="form-control editor" asp-for="@Model.Urun.Detay"></textarea>
+                                                    <span asp-validation-for="@Model.Urun.Detay"></span>
+                                                </div>
+                                            </div>
+
+                                            @*<div class="item form-group">
+                                                <label class="col-form-label col-md-3 col-sm-3 label-align" asp-for="@Model.Urun.KargoDetay"></label>
+                                                <div class="col-md-9 col-sm-9 ">
+                                                    <textarea class="form-control editor" asp-for="@Model.Urun.KargoDetay"></textarea>
+                                                    <span asp-validation-for="@Model.Urun.KargoDetay"></span>
+                                                </div>
+                                            </div>*@
+
+                                            <div class="item form-group">
+                                                <label class="col-form-label col-md-3 col-sm-3 label-align" asp-for="@Model.Urun.DisplayIndex"></label>
+                                                <div class="col-md-9 col-sm-9 ">
+                                                    <input class="form-control " asp-for="@Model.Urun.DisplayIndex">
+                                                    <span asp-validation-for="@Model.Urun.DisplayIndex"></span>
+                                                </div>
+                                            </div>
+
+
+                                            @*<div class="col-md-6 col-sm-6 ">
+                                                <select id="select2" class="form-control" asp-for="@Model.Urun.ParentID" asp-items="@Model.Kategoriler.Select(x => new SelectListItem{Text = x.Name, Value = x.ID.ToString()})" style="display: none;">
+                                                </select>
+                                                <option value=""></option>
+                                                <span asp-validation-for="@Model.Urun.ParentID"></span>
+                                            </div>*@
+
+
+
+
+                                            <div class="item form-group">
+                                                <div class="col-md-9 col-sm-9 offset-md-3">
+                                                    <button class="btn btn-primary" asp-controller="Urun" asp-action="Index">İptal Et</button>
+                                                    <button class="btn btn-primary" type="reset">Temizle</button>
+                                                    <button type="submit" class="btn btn-success">Ürün Ekle</button>
+                                                </div>
+                                            </div>
+                                            @Html.AntiForgeryToken()
+                                        </form>
+                                    </div>
+								</div>
+							</div>
+						</div>
+
+
+					</div>
+				</div>
+			</main>
+		</div>
+	</div>
+	<script src="/admin/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+	<script src="/admin/js/scripts.js"></script>
+	<script src="/admin/js/simple-datatables.min.js" crossorigin="anonymous"></script>
+	<script src="/admin/js/datatables-simple-demo.js"></script>
+    
+
+</body>
+</html>

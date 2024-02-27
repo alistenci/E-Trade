@@ -1,0 +1,21 @@
+<style>
+    /*ul li{
+        width: 75px;
+        height: 45px;
+        display: inline-block;
+        opacity: 0.6;
+        cursor: pointer;
+    }*/
+    .aktif{
+        display: block;
+        animation: fade .7s ease;
+    }
+    @keyframes fade{
+        0%{opacity: .5}
+        100%{opacity: 1;}
+    }
+    .aktifOnizleme{
+        opacity: 1;
+        animation: fade .7s ease;
+    }
+</style>
